@@ -1,4 +1,3 @@
-from queue import Queue
 from collections import deque
 
 class LRU:
@@ -17,3 +16,13 @@ class LRU:
 
     def get_cache(self):
         return self.queue
+
+if __name__ == "__main__":
+    q = LRU()
+    q.put(1)
+    q.put(2)
+    q.put(3)
+    q.put(4)
+    q.put(5)
+    q.put(6)
+    print(q.get())
