@@ -1,0 +1,74 @@
+<!-- ToDo List
+For today's task, the students have to do the ToDo list with the following options using JavaScript: (No server required)
+1. Adding a ToDo task.
+2. Deleting a ToDo task by clicking a button .
+3. Marking a ToDo task when it is done (Strikethrough or marking it with different color)
+4. Displaying all the ToDo tasks. -->
+
+<html>
+    <head>
+        <title>To-Do List</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                let addButton = document.querySelector("#add");
+                let addInput = document.querySelector("#task");
+
+                addButton.addEventListener('click', function() {
+                    let task = document.getElementById("task").value;
+                    addItemTodo(task);
+                    document.getElementById("task").value = "";
+                })
+
+                addInput.addEventListener("keypress",function(e) {
+                    if (13 === e.keyCode){
+                        let newItem = document.getElementById("task").value;
+                        addItemTodo(newItem);
+                        document.getElementById("task").value = "";
+                    }
+                })
+            })
+            
+            function addItemTodo(text){
+                let list = document.getElementById("todo");
+                let item = document.createElement('li');
+                item.innerText = text + "\xa0\xa0\xa0\xa0\xa0\xa0";
+                let remove = document.createElement('button');
+                remove.innerHTML = "Remove"
+                remove.addEventListener("click", removeItem);
+                item.appendChild(remove);
+                list.insertBefore(item,list.childNodes[0]);
+            }
+
+            function removeItem() {
+                let item = this.parentNode;
+                let parent = item.parentNode
+                parent.removeChild(item);
+            }
+
+        </script>
+    </head>
+    <body>
+        <!-- <div class="">
+            <h1>To-Do List</h1>
+            <div id="task_body">
+                <input type="text" id="task" placeholder="Enter your task..">
+                <button id="add_task" onclick="addTask()">Add Task</button>
+            </div>
+            <ul id="list"></ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+                <li>d</li>
+            <button id="delete_task">Delete Task</button>
+        </div> -->
+        <div id="container">
+            <header>
+              <input type="text" placeholder="Enter an activity..." id="task" />
+              <button id="add">Add Task</button>
+            </header>
+            <ul class="todo" id="todo"></ul>
+            <h2>Completed</h2>
+            <ul class="completed" id="completed"></ul>
+        </div>
+    </body>
+</html>
